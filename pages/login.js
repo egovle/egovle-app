@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import '../firebase';
 
-export default function LoginPage() {
+export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = getAuth();
@@ -10,7 +10,7 @@ export default function LoginPage() {
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert('Login successful');
+      alert("Login successful!");
     } catch (error) {
       alert(error.message);
     }
@@ -27,20 +27,10 @@ export default function LoginPage() {
 
   return (
     <div style={{ padding: 40 }}>
-      <h2>Login to eGoVLE</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      /><br /><br />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      /><br /><br />
-      <button onClick={handleLogin}>Login</button> &nbsp;
+      <h1>Login</h1>
+      <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
+      <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
+      <button onClick={handleLogin}>Login</button>&nbsp;
       <button onClick={handleGoogleLogin}>Login with Google</button>
     </div>
   );
